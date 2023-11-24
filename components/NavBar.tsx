@@ -42,7 +42,7 @@ export default function NavBar() {
         <section className="  flex w-full relative pt-5">
           <div className="flex justify-between items-center text-background w-full">
             <div className="">
-              <h1 className="text-2xl font-bold">Citadel</h1>
+              <h1 className="text-2xl font-bold">TTcitadel</h1>
             </div>
             {contact_data.map((data, index) => (
               <ContactComp key={index} {...data} />

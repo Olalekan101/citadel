@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { GiAfrica } from "react-icons/gi";
+import { LearnMoreBtn } from "./ButtonAction";
 
 const HeroImageBG = () => {
   return (
@@ -34,10 +35,7 @@ export default function HeroSection() {
           </p>
         </div>
         <div className=" mt-10 ">
-          <Button className="flex gap-2 text-lg">
-            <FaArrowAltCircleRight />
-            Learn More
-          </Button>
+          <LearnMoreBtn />
         </div>
       </div>
       <HeroImageBG />

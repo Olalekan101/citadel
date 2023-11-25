@@ -51,7 +51,6 @@ export default function SliderSection() {
   return (
     <section className="w-screen bg-background lg:py-10 flex">
       <Swiper
-        centeredSlides={true}
         slidesPerView={1}
         spaceBetween={0}
         breakpoints={{

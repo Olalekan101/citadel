@@ -68,17 +68,17 @@ export default function GallarySection() {
             <p>Together We Can Make A Difference</p>
           </div>
         </div>
-        <div className=" grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 w-fit mx-auto">
+        <div className=" grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 w-fit mx-auto">
           {GalleryData.map((value, index) => (
             <div
-              className=" hover:cursor-pointer  group relative shadow-lg text-white rounded-xl  h-[200px] w-[170px] lg:h-[250px] lg:w-[250px] "
+              className=" hover:cursor-pointer  group relative shadow-lg text-white rounded-xl  h-[200px] w-[130px] lg:h-[250px] lg:w-[250px] "
               key={index}
             >
               <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 delay-100 duration-500 z-10">
                 <p className="font-bold text-xl text-white">{value.title}</p>
               </div>
               <div
-                className="absolute inset-0  bg-cover bg-center rounded-lg overflow-clip group-hover:brightness-50 group-hover:scale-110 transistion-transform duration-500 group-hover:hue-rotate-15"
+                className="absolute inset-0 bg-cover bg-center rounded-lg overflow-clip group-hover:brightness-50 group-hover:scale-110 transistion-transform duration-500 group-hover:hue-rotate-15"
                 style={{ backgroundImage: `url(${value.image})` }}
               />
             </div>

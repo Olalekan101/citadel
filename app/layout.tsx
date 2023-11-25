@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import FixedBg from "@/components/FixedBg";
 import FixedSocialMediaBtn from "@/components/FixedSocialMediaBtn";
+import ScrollToTheTopBtn from "@/components/ScrollToTheTopBtn";
 
 const inter = Inter({ subsets: ["latin"] });
 const raleway = Raleway({ subsets: ["latin"] });
@@ -24,6 +25,8 @@ export default function RootLayout({
       <body
         className={`${raleway.className} flex flex-col min-h-screen relative `}
       >
+        <ScrollToTheTopBtn />
+
         <FixedBg />
         <FixedSocialMediaBtn />
         <NavBar />

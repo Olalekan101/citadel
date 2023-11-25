@@ -20,7 +20,7 @@ const socialLinks = [
 
 export default function FixedSocialMediaBtn() {
   return (
-    <section className="fixed top-0 right-0 translate-y-1/2 h-screen z-50">
+    <section className="fixed top-0 right-0 translate-y-1/2 h-screen z-50 hidden lg:block">
       <div className=" flex flex-col gap-2 justify-center items-center bg-foreground px-3 py-5 rounded-l-lg text-white">
         {socialLinks.map((value, index) => (
           <a key={index} href={value.link}>

@@ -9,7 +9,7 @@ export function DonationBtn() {
     <Link href={"/"}>
       <Button className="flex justify-center items-center gap-2 bg-yellow-500 text-white hover:bg-yellow-300 font-bold ">
         <BiSolidDonateHeart />
-        <span>Make a Donation</span>
+        <p className="lg:text-base text-sm">Make a Donation</p>
       </Button>
     </Link>
   );
@@ -18,9 +18,9 @@ export function DonationBtn() {
 export function LearnMoreBtn() {
   return (
     <Link href={"/"}>
-      <Button className="flex gap-2 text-lg">
+      <Button className="flex gap-2 text-lg px-4">
         <FaArrowAltCircleRight />
-        Learn More
+        <p className="lg:text-base text-sm">Learn More</p>
       </Button>
     </Link>
   );

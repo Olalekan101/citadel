@@ -49,13 +49,12 @@ export default function SliderSection() {
   const swiper = useSwiper();
 
   return (
-    <section className="w-screen bg-background py-10 flex">
+    <section className="w-screen bg-background lg:py-10 flex">
       <Swiper
+        centeredSlides={true}
+        slidesPerView={1}
+        spaceBetween={0}
         breakpoints={{
-          340: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
           700: {
             slidesPerView: 3,
             spaceBetween: 8,
@@ -67,11 +66,11 @@ export default function SliderSection() {
         }}
         navigation
         modules={[FreeMode, Pagination, A11y, Navigation]}
-        className="max-w-[50%] lg:max-w-[80%] "
+        className="max-w-[90%] lg:max-w-[80%] "
       >
         {SliderData.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col gap-6 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[250px] lg:h-[400px] lg:w-[350px] mb-10 ">
+            <div className="flex flex-col gap-6 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[400px] w-[80%] lg:h-[400px] lg:w-[350px] mb-10 ">
               {/* <div className="absolute inset-0 bg-cover bg-center">
                 <Image
                   src={item.image}
@@ -81,8 +80,8 @@ export default function SliderSection() {
                 />
               </div> */}
               <div className="absolute inset-0 bg-cover bg-center z-10 p-5">
-                <p className="font-bold text-xl mb-5">{item.title}</p>
-                <p>{item.description}</p>
+                <p className="font-bold text-xl mb-3 lg:mb-5">{item.title}</p>
+                <p className="lg:text-base text-sm">{item.description}</p>
               </div>
               <div
                 className="absolute inset-0 bg-cover bg-center brightness-50 rounded-lg overflow-clip"

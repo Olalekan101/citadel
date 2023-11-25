@@ -64,11 +64,11 @@ function CardComp({ title, discription, bgImage, overlaycolor, icon }: any) {
 export default function HowTOHelp() {
   return (
     <section className="w-screen bg-background ">
-      <div className=" py-20">
+      <div className="py-5 lg:py-20">
         <div className="w-full flex justify-center py-4">
           <p className="text-3xl font-extrabold">How To Help</p>
         </div>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {howtohelpData.map((value, index) => (
             <CardComp key={index} {...value} />
           ))}

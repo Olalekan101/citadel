@@ -77,7 +77,7 @@
 
 @layer components {
   .maincontainer {
-    @apply container max-w-6xl mx-auto;
+    @apply container max-w-6xl mx-auto px-5 lg:px-9;
   }
 }
 .swiper-button-next,

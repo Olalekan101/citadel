@@ -8,7 +8,7 @@ export default function FixedBg() {
         src={"/images/background_image.jpg"}
         fill={true}
         alt="hero Image"
-        className="object-cover w-full h-full brightness-50"
+        className="object-cover lg:object-cover w-full h-full brightness-50"
       />
     </div>
   );

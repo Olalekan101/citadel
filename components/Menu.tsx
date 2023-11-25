@@ -52,7 +52,36 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ];
 
-const aboutlinks: { title: string; href: string; description: string }[] = [
+export const aboutlinks: {
+  title: string;
+  href: string;
+  description: string;
+}[] = [
+  {
+    title: "About",
+    href: "/docs/primitives/alert-dialog",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Our People",
+    href: "/docs/primitives/hover-card",
+    description:
+      "For sighted users to preview content available behind a link.",
+  },
+  {
+    title: "Our Impact",
+    href: "/docs/primitives/progress",
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+  },
+];
+
+export const whatwedolinks: {
+  title: string;
+  href: string;
+  description: string;
+}[] = [
   {
     title: "About",
     href: "/docs/primitives/alert-dialog",
@@ -97,7 +126,7 @@ export function NavigationMenuDesktop() {
           <NavigationMenuTrigger>What We Do</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {whatwedolinks.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}

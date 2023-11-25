@@ -3,6 +3,7 @@ import GallarySection from "@/components/GallarySection";
 import HeroSection from "@/components/HeroSection";
 import HowTOHelp from "@/components/HowTOHelp";
 import Milestones from "@/components/Milestones";
+import ScrollToTheTopBtn from "@/components/ScrollToTheTopBtn";
 import SliderSection from "@/components/SliderSection";
 import WhoWeAreComp from "@/components/WhoWeAreComp";
 

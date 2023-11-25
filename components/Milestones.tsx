@@ -29,17 +29,17 @@ const VideoCover = ({ children }: any) => {
 
 export default function Milestones() {
   return (
-    <div className=" w-screen bg-background pt-10 pb-20">
+    <div className=" w-screen bg-background lg:pt-10 lg:pb-20 pt:5 pb:10 ">
       <section className="maincontainer  ">
         <div className=" flex flex-col gap-2 justify-center items-center">
           <p>Lastest Causes</p>
           <p className="text-3xl font-bold">Milestones</p>
         </div>
-        <div className="flex justify-center items-start gap-2 mt-7">
+        <div className="flex flex-col lg:flex-row justify-center items-start gap-2 mt-7">
           {milestoneData.map((value, index) => (
             <Card
               key={index}
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col lg:w-fit w-full  justify-center items-center"
             >
               <CardHeader>
                 <CardDescription>{value.discription}</CardDescription>
@@ -50,7 +50,7 @@ export default function Milestones() {
             </Card>
           ))}
         </div>
-        <div className=" w-full grid grid-cols-3 gap-2 mt-10">
+        <div className=" w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 gap-2 mt-10 pb-10">
           <iframe
             src="https://www.youtube.com/embed/vSQjk9jKarg?si=SLHuauCJuH7gyyuQ"
             title="YouTube video player"

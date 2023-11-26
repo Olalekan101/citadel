@@ -71,7 +71,7 @@ export default function GallarySection() {
         <div className=" grid grid-cols-2 lg:grid-cols-4 lg:gap-4 gap-2 w-fit mx-auto">
           {GalleryData.map((value, index) => (
             <div
-              className=" hover:cursor-pointer  group relative shadow-lg text-white rounded-xl  h-[200px] w-[130px] lg:h-[250px] lg:w-[250px] "
+              className=" hover:cursor-pointer  group relative shadow-lg text-white rounded-xl  h-[200px] w-[130px] md:h-[250px] md:w-[250px] "
               key={index}
             >
               <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 delay-100 duration-500 z-10">

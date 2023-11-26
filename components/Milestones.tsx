@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const milestoneData = [
   {
@@ -28,6 +30,19 @@ const VideoCover = ({ children }: any) => {
 };
 
 export default function Milestones() {
+  const animateArray = {
+    initial: {
+      opacity: 0,
+      y: 100,
+    },
+    animate: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.05 * index,
+      },
+    }),
+  };
   return (
     <div className=" w-screen bg-background lg:pt-10 lg:pb-20 pt:5 pb:10 ">
       <section className="maincontainer  ">
@@ -37,20 +52,29 @@ export default function Milestones() {
         </div>
         <div className="flex flex-col lg:flex-row justify-center items-start gap-2 mt-7">
           {milestoneData.map((value, index) => (
-            <Card
-              key={index}
-              className="flex flex-col lg:w-fit w-full  justify-center items-center"
+            <motion.div
+              className="lg:w-fit w-full"
+              variants={animateArray}
+              initial="initial"
+              custom={index}
+              whileInView="animate"
+              viewport={{ once: true }}
             >
-              <CardHeader>
-                <CardDescription>{value.discription}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-bold ">{value.number}</p>
-              </CardContent>
-            </Card>
+              <Card
+                key={index}
+                className="flex flex-col  justify-center items-center"
+              >
+                <CardHeader>
+                  <CardDescription>{value.discription}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold ">{value.number}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
-        <div className=" w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 gap-2 mt-10 pb-10">
+        <div className=" w-fit mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-10 pb-10">
           <iframe
             src="https://www.youtube.com/embed/vSQjk9jKarg?si=SLHuauCJuH7gyyuQ"
             title="YouTube video player"

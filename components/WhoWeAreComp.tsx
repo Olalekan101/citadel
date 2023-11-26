@@ -1,18 +1,11 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { PiCastleTurretLight } from "react-icons/pi";
 import { PiCastleTurretFill } from "react-icons/pi";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { FaArrowAltCircleRight } from "react-icons/fa";
-import { Button } from "./ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LearnMoreBtn } from "./ButtonAction";
+import { motion, stagger, useAnimate, useInView } from "framer-motion";
 
 const cardContents = [
   {
@@ -44,6 +37,51 @@ const cardContents = [
 ];
 
 export default function WhoWeAreComp() {
+  // const [scope, animate] = useAnimate();
+  // const main = useRef(null);
+  // const isInView = useInView(scope, {
+  //   root: main,
+  //   once: true,
+  // });
+  // console.log(isInView, "lolo");
+
+  // useEffect(() => {
+  //   if (isInView) {
+  //     const animateFunction = async () => {
+  //       // await animate("#one", { opacity: 1, y: 0 });
+  //       await animate(
+  //         "#two",
+  //         { opacity: 1, y: 0 },
+  //         { delay: stagger(0.2), duration: 0.4 }
+  //       );
+  //       //   await animate(
+  //       //     "#three",
+  //       //     { opacity: 1, y: 0 },
+  //       //     { delay: 0.2, duration: 0.3 }
+  //       //   );
+  //       //   await animate(
+  //       //     "#four",
+  //       //     { opacity: 1, y: 0 },
+  //       //     { delay: 0.2, duration: 0.3 }
+  //       //   );
+  //     };
+  //     animateFunction();
+  //   }
+  // }, [isInView]);
+  const animation = {
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
+    animate: (index: number) => ({
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        delay: 0.2 * index,
+      },
+    }),
+  };
   return (
     <div className=" w-screen pt:10 lg:pt-20 bg-background h-fit">
       <div className="flex flex-col lg:flex-row justify-center items-center h-full gap-4 maincontainer py-5">
@@ -72,24 +110,35 @@ export default function WhoWeAreComp() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-5 ">
             {cardContents.map((value, index) => (
-              <Card key={index} className="lg:last:col-span-2">
-                <CardHeader>
-                  <CardTitle>{value.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {value.discription && <p>{value.discription}</p>}
-                  {value.items !== null && (
-                    <ul className="grid grid-cols-1 lg:grid-cols-2">
-                      {value.items?.map((item, index) => (
-                        <li key={index} className="flex gap-2 ">
-                          <PiCastleTurretFill />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </CardContent>
-              </Card>
+              <motion.div
+                variants={animation}
+                initial="hidden"
+                whileInView={"animate"}
+                viewport={{ once: true }}
+                key={index}
+                custom={index}
+                className="lg:last:col-span-2"
+                id="two"
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{value.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {value.discription && <p>{value.discription}</p>}
+                    {value.items !== null && (
+                      <ul className="grid grid-cols-1 lg:grid-cols-2">
+                        {value.items?.map((item, index) => (
+                          <li key={index} className="flex gap-2 ">
+                            <PiCastleTurretFill />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
           <div className=" py-3 lg:py-5 justify-start w-full">

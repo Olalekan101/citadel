@@ -55,6 +55,10 @@ export default function SliderSection() {
         spaceBetween={0}
         breakpoints={{
           700: {
+            slidesPerView: 2,
+            spaceBetween: 8,
+          },
+          1000: {
             slidesPerView: 3,
             spaceBetween: 8,
           },

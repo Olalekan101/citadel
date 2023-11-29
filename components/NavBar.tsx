@@ -5,50 +5,63 @@ import { FaLocationDot } from "react-icons/fa6";
 import DesktopMenu from "./DesktopMenu";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MobileMenuDrawer } from "./MobileMenuDrawer";
+import { getGoogleSheetsData } from "@/dbconnection/gsheet";
+import { contactData } from "@/dbconnection/sheetQuery";
 
-const contact_data = [
-  {
-    title: "Call at anytime",
-    contact: "07010174548",
-    icon: <FaPhoneAlt size={18} />,
-  },
-  {
-    title: "Send Email",
-    contact: "test@gmail.com",
-    icon: <MdEmail size={18} />,
-  },
-  ,
-  {
-    title: "Address",
-    contact: "Warri,Delta State",
-    icon: <FaLocationDot size={18} />,
-  },
-];
-
-function ContactComp({ title, contact, icon }: any) {
+export function ContactComp({ title, contact, icon }: any) {
+  let contactcheck = null;
+  if (title.includes("Call Us")) {
+    contactcheck = <a href={`tel:+${contact}`}>{contact}</a>;
+  } else if (title.includes("Send Email")) {
+    contactcheck = <a href={`mailto:+${contact}`}>{contact}</a>;
+  } else contactcheck = <p>{contact}</p>;
   return (
     <>
       <div className="flex justify-center items-center h-full">{icon}</div>
       <div className="flex flex-col">
         <p>{title}</p>
-        <p>{contact}</p>
+        {contactcheck}
       </div>
     </>
   );
 }
 
-function ContactCompMobile({ contact, icon }: any) {
+export function ContactCompMobile({ title, contact, icon }: any) {
+  let contactcheck = null;
+  if (title.includes("Call Us")) {
+    contactcheck = <a href={`tel:+${contact}`}>{contact}</a>;
+  } else if (title.includes("Send Email")) {
+    contactcheck = <a href={`mailto:+${contact}`}>{contact}</a>;
+  } else contactcheck = <p>{contact}</p>;
   return (
     <div className="flex justify-start items-center gap-2">
       <div className="">{icon}</div>
-      <div className="flex">
-        <p>{contact}</p>
-      </div>
+      <div className="flex">{contactcheck}</div>
     </div>
   );
 }
 
-export default function NavBar() {
+export default async function NavBar() {
+  const data = await contactData();
+
+  const contact_data = [
+    {
+      title: "Call Us",
+      icon: <FaPhoneAlt size={18} />,
+      contact: data && data[0],
+    },
+    {
+      title: "Send Email",
+      icon: <MdEmail size={18} />,
+      contact: data && data[1],
+    },
+    ,
+    {
+      title: "Address",
+      icon: <FaLocationDot size={18} />,
+      contact: data && data[2],
+    },
+  ];
   return (
     <header className="bg-foreground flex flex-col relative z-10 ">
       <div className="maincontainer flex flex-col justify-center items-center">

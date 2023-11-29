@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React from "react";
 import {
   Card,
@@ -9,40 +9,36 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
-
-const milestoneData = [
-  {
-    discription: "Girls Impacted",
-    number: 450,
-  },
-  {
-    discription: "College Scholarships Awarded",
-    number: 350,
-  },
-  {
-    discription: "Youths Trained on Tech Skills",
-    number: 190,
-  },
-];
+import { milestone } from "@/dbconnection/sheetQuery";
 
 const VideoCover = ({ children }: any) => {
   return <div className=" overflow-clip rounded-lg">{children}</div>;
 };
 
-export default function Milestones() {
-  const animateArray = {
-    initial: {
-      opacity: 0,
-      y: 100,
-    },
-    animate: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.05 * index,
-      },
-    }),
-  };
+export default async function Milestones() {
+  // const animateArray = {
+  //   initial: {
+  //     opacity: 0,
+  //     y: 100,
+  //   },
+  //   animate: (index: number) => ({
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       delay: 0.05 * index,
+  //     },
+  //   }),
+  // };
+
+  const aboutdata = (await milestone()) ?? [];
+  const aboutmap = aboutdata.map((value) => {
+    const data = value.split("-");
+    return {
+      description: data[0],
+      number: data[1],
+    };
+  });
+
   return (
     <div className=" w-screen bg-background lg:pt-10 lg:pb-20 pt:5 pb:10 ">
       <section className="maincontainer  ">
@@ -51,27 +47,40 @@ export default function Milestones() {
           <p className="text-3xl font-bold">Milestones</p>
         </div>
         <div className="flex flex-col lg:flex-row justify-center items-start gap-2 mt-7">
-          {milestoneData.map((value, index) => (
-            <motion.div
-              className="lg:w-fit w-full"
-              variants={animateArray}
-              initial="initial"
-              custom={index}
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
+          {aboutmap.map((value, index) => (
+            <div className="lg:w-fit w-full">
               <Card
                 key={index}
                 className="flex flex-col  justify-center items-center"
               >
                 <CardHeader>
-                  <CardDescription>{value.discription}</CardDescription>
+                  <CardDescription>{value.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-2xl font-bold ">{value.number}</p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
+            // <motion.div
+            //   className="lg:w-fit w-full"
+            //   variants={animateArray}
+            //   initial="initial"
+            //   custom={index}
+            //   whileInView="animate"
+            //   viewport={{ once: true }}
+            // >
+            //   <Card
+            //     key={index}
+            //     className="flex flex-col  justify-center items-center"
+            //   >
+            //     <CardHeader>
+            //       <CardDescription>{value.discription}</CardDescription>
+            //     </CardHeader>
+            //     <CardContent>
+            //       <p className="text-2xl font-bold ">{value.number}</p>
+            //     </CardContent>
+            //   </Card>
+            // </motion.div>
           ))}
         </div>
         <div className=" w-fit mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-10 pb-10">

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
-import { aboutlinks, whatwedolinks } from "./Menu";
+import { whatwedolinks, aboutlinks } from "@/data/Urllinks";
 
 export function MobileMenuDrawer() {
   return (

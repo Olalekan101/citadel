@@ -13,6 +13,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { whatwedolinks, aboutlinks } from "@/data/Urllinks";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -52,56 +53,6 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ];
 
-export const aboutlinks: {
-  title: string;
-  href: string;
-  description: string;
-}[] = [
-  {
-    title: "About",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Our People",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Our Impact",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-];
-
-export const whatwedolinks: {
-  title: string;
-  href: string;
-  description: string;
-}[] = [
-  {
-    title: "About",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Our People",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Our Impact",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-];
-
 export function NavigationMenuDesktop() {
   return (
     <NavigationMenu className="z-20">
@@ -110,7 +61,7 @@ export function NavigationMenuDesktop() {
           <NavigationMenuTrigger>About</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              {aboutlinks.map((component) => (
+              {aboutlinks?.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -126,7 +77,7 @@ export function NavigationMenuDesktop() {
           <NavigationMenuTrigger>What We Do</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {whatwedolinks.map((component) => (
+              {whatwedolinks?.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}

@@ -3,35 +3,9 @@ import { FaHandsHelping } from "react-icons/fa";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { LearnMoreBtn } from "./ButtonAction";
+import { howToHelp } from "@/dbconnection/sheetQuery";
 
 const ICONVALUE = 50;
-
-const howtohelpData = [
-  {
-    title: "Volunteer",
-    discription:
-      "Volunteers are critical to the mission and growth of WAAW Foundation. Much of our success is attributed to the countless hours contributed by our volunteers.",
-    bgImage: "/images/background_image.jpg",
-    overlaycolor: "bg-yellow-500/40",
-    icon: <FaHandsHelping size={ICONVALUE} />,
-  },
-  {
-    title: "Partners",
-    discription:
-      "Volunteers are critical to the mission and growth of WAAW Foundation. Much of our success is attributed to the countless hours contributed by our volunteers.",
-    bgImage: "/images/background_image.jpg",
-    overlaycolor: "bg-green-500/40",
-    icon: <FaHandsHelping size={ICONVALUE} />,
-  },
-  {
-    title: "Mentorship",
-    discription:
-      "Volunteers are critical to the mission and growth of WAAW Foundation. Much of our success is attributed to the countless hours contributed by our volunteers.",
-    bgImage: "/images/background_image.jpg",
-    overlaycolor: "bg-pink-500/40",
-    icon: <FaHandsHelping size={ICONVALUE} />,
-  },
-];
 
 function CardComp({ title, discription, bgImage, overlaycolor, icon }: any) {
   return (
@@ -61,7 +35,33 @@ function CardComp({ title, discription, bgImage, overlaycolor, icon }: any) {
   );
 }
 
-export default function HowTOHelp() {
+export default async function HowTOHelp() {
+  const howToHelpx = (await howToHelp()) ?? [];
+
+  const howtohelpData = [
+    {
+      title: "Volunteer",
+      discription: howToHelpx[0],
+      bgImage: "/images/background_image.jpg",
+      overlaycolor: "bg-yellow-500/40",
+      icon: <FaHandsHelping size={ICONVALUE} />,
+    },
+    {
+      title: "Partners",
+      discription: howToHelpx[1],
+      bgImage: "/images/background_image.jpg",
+      overlaycolor: "bg-green-500/40",
+      icon: <FaHandsHelping size={ICONVALUE} />,
+    },
+    {
+      title: "Mentorship",
+      discription: howToHelpx[2],
+      bgImage: "/images/background_image.jpg",
+      overlaycolor: "bg-pink-500/40",
+      icon: <FaHandsHelping size={ICONVALUE} />,
+    },
+  ];
+
   return (
     <section className="w-screen bg-background ">
       <div className="py-5 lg:py-20">

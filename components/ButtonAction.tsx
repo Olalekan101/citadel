@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function DonationBtn() {
   return (
-    <Link href={"/"}>
+    <Link href={"/donation"}>
       <Button className="flex justify-center items-center gap-2 bg-yellow-500 text-white hover:bg-yellow-300 font-bold ">
         <BiSolidDonateHeart />
         <p className="lg:text-base text-sm">Make a Donation</p>

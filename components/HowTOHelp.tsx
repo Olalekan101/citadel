@@ -63,7 +63,7 @@ export default async function HowTOHelp() {
   ];
 
   return (
-    <section className="w-screen bg-background ">
+    <section id="howtohelp" className="w-screen bg-background ">
       <div className="py-5 lg:py-20">
         <div className="w-full flex justify-center py-4">
           <p className="text-3xl font-extrabold">How To Help</p>

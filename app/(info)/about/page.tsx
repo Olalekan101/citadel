@@ -1,5 +1,5 @@
 import React from "react";
-import { getGoogleSheetsData } from "../../dbconnection/gsheet";
+import { getGoogleSheetsData } from "../../../dbconnection/gsheet";
 import google from "@googleapis/sheets";
 
 export default async function AboutUs() {

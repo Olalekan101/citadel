@@ -40,3 +40,10 @@ export async function howToHelp() {
   const texts = data?.flatMap((x) => x.join(""));
   return texts;
 }
+
+export async function socialMediaLinks() {
+  const range = `main!F2:F5`;
+  const data = await getGoogleSheetsData(range);
+  const texts = data?.flatMap((x) => x.join(""));
+  return texts;
+}

@@ -5,9 +5,9 @@ export async function getGoogleSheetsData(range: string) {
     projectId: "ttcitadel",
     credentials: {
       type: "service_account",
-      private_key: process.env.GSHEET_PRIVATE_KEY,
-      client_email: process.env.GSHEET_CLIENT_EMAIL,
-      client_id: process.env.GSHEET_CLIENT_ID,
+      private_key: process.env.NEXT_PUBLIC_GSHEET_PRIVATE_KEY,
+      client_email: process.env.NEXT_PUBLIC_GSHEET_CLIENT_EMAIL,
+      client_id: process.env.NEXT_PUBLIC_GSHEET_CLIENT_ID,
       token_url: "https://oauth2.googleapis.com/token",
       universe_domain: "googleapis.com",
     },
@@ -17,7 +17,7 @@ export async function getGoogleSheetsData(range: string) {
   const sheetsX = sheets({ version: "v4", auth: authX });
 
   const data = await sheetsX.spreadsheets.values.get({
-    spreadsheetId: process.env.GSHEET_ID,
+    spreadsheetId: process.env.NEXT_PUBLIC_GSHEET_ID,
     range: range,
   });
 

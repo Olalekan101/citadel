@@ -1,29 +1,41 @@
+import { socialMediaLinks } from "@/dbconnection/sheetQuery";
 import React from "react";
 import { FaFacebook } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaInstagramSquare, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 
-const socialLinks = [
-  {
-    icon: <FaFacebook size={25} />,
-    link: "",
-  },
-  {
-    icon: <FaInstagramSquare size={25} />,
-    link: "",
-  },
-  {
-    icon: <FaLinkedin size={25} />,
-    link: "",
-  },
-];
+export default async function FixedSocialMediaBtn() {
+  const data = (await socialMediaLinks()) ?? [];
+  console.log(data, "socail");
 
-export default function FixedSocialMediaBtn() {
+  const ICONSIZE = 25;
+  const socialLinks = [
+    {
+      icon: <FaFacebook size={ICONSIZE} />,
+      link: data[0],
+    },
+    {
+      icon: <FaInstagramSquare size={ICONSIZE} />,
+      link: data[1],
+    },
+    {
+      icon: <FaWhatsapp size={ICONSIZE} />,
+      link: data[2],
+    },
+    {
+      icon: <FaLinkedin size={ICONSIZE} />,
+      link: data[3],
+    },
+    {
+      icon: <FaYoutube size={ICONSIZE} />,
+      link: data[4],
+    },
+  ];
   return (
     <section className="fixed top-0 right-0 translate-y-1/2 h-screen z-50 hidden lg:block">
       <div className=" flex flex-col gap-2 justify-center items-center bg-foreground px-3 py-5 rounded-l-lg text-white">
         {socialLinks.map((value, index) => (
-          <a key={index} href={value.link}>
+          <a key={index} href={value.link} target="_blank">
             {value.icon}
           </a>
         ))}

@@ -1,12 +1,9 @@
 // "use client";
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { GiAfrica } from "react-icons/gi";
 import { LearnMoreBtn } from "./ButtonAction";
-import { motion, useInView, useAnimate, stagger } from "framer-motion";
-import { useQuery } from "react-query";
-import { getGoogleSheetsData } from "@/dbconnection/gsheet";
-import { getHeroTitle } from "@/dbconnection/sheetQuery";
+import { getHeroBgImage, getHeroTitleTwo } from "@/dbconnection/sheetQuery";
 import extractFileIdFromUrl from "@/functions/imageIdExtraction";
 
 const HeroImageBG = ({ url }: any) => {
@@ -26,16 +23,16 @@ const HeroImageBG = ({ url }: any) => {
 const HeroTitle = "Building African Leaders And Tech Innovators";
 
 export default async function HeroSection() {
-  const range = `main!B2:B`;
-  const rangeImages = `images!B2:B`;
-  const data = await getGoogleSheetsData(range);
-  const dataImages = await getGoogleSheetsData(rangeImages);
+  const data = (await getHeroTitleTwo()) ?? [];
+  const dataImages = (await getHeroBgImage()) ?? [];
+  // const maindata = await getAll();
+  // console.log(maindata, "heeyeye");
+
   const texts = data?.flatMap((x) => x.join(""));
   const heroImageextract = dataImages?.flatMap((x) => x.join("")) ?? [];
   const heroImage = heroImageextract[0]
     ? extractFileIdFromUrl(heroImageextract[0])
     : null;
-  console.log(heroImage, "koko");
   // console.log(texts[0]);
 
   // const { isLoading, error, data } = useQuery(["repoData"], () =>

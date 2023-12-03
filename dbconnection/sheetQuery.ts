@@ -1,5 +1,22 @@
 import { getGoogleSheetsData } from "./gsheet";
 
+export async function getAll() {
+  const range = "main!A1:G";
+  const data = await getGoogleSheetsData(range);
+  return data;
+}
+
+export async function getHeroBgImage() {
+  const range = "images!B2:B";
+  const data = await getGoogleSheetsData(range);
+  return data;
+}
+export async function getHeroTitleTwo() {
+  const range = "main!B2:B";
+  const data = await getGoogleSheetsData(range);
+  return data;
+}
+
 export async function getHeroTitle() {
   const range = "main!A1:A";
   const data = await getGoogleSheetsData(range);

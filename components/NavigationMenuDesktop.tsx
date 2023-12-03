@@ -41,8 +41,8 @@ const ListBtnItems = ({ value, index }: any) => {
 
 export function NavigationMenuDesktop() {
   const params = usePathname();
-  console.log(JSON.stringify(params, null, 2), "params");
-  console.log(params.length, "params");
+  // console.log(JSON.stringify(params, null, 2), "params");
+  // console.log(params.length, "params");
 
   return (
     <section className="relative  gap-4 w-full flex justify-center items-center  ">

@@ -1,11 +1,10 @@
 // "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { PiCastleTurretLight } from "react-icons/pi";
 import { PiCastleTurretFill } from "react-icons/pi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LearnMoreBtn } from "./ButtonAction";
-import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { aboutUs } from "@/dbconnection/sheetQuery";
 
 // const cardContents = [

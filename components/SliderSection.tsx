@@ -1,15 +1,13 @@
 "use client";
 import React from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
 import { FreeMode, Pagination, A11y, Navigation } from "swiper/modules";
-import Image from "next/image";
-import { FaArrowCircleRight } from "react-icons/fa";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
+
 import SlideNextButton from "./SwiperBtn";
 
 const SliderData = [
@@ -46,8 +44,6 @@ const SliderData = [
 ];
 
 export default function SliderSection() {
-  const swiper = useSwiper();
-
   return (
     <section className="w-screen bg-background lg:py-10 flex">
       <Swiper

@@ -37,7 +37,7 @@ export function MobileMenuDrawer() {
             <AccordionTrigger>What We Do</AccordionTrigger>
             <AccordionContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                {aboutlinks.map((component) => (
+                {whatwedolinks.map((component) => (
                   <Link href={component.href}>
                     <li key={component.title} title={component.title}>
                       {component.title}

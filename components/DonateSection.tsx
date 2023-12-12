@@ -1,11 +1,15 @@
-// "use client";
+"use client";
 import { useEffect, useRef } from "react";
 import React from "react";
 import { DonationBtn } from "./ButtonAction";
 import { motion, useAnimate, stagger, useInView } from "framer-motion";
 import { donationmsg, milestone } from "@/dbconnection/sheetQuery";
+import { useSheetQuery } from "@/store/sheetquery";
 
-export default async function DonateSection() {
+export default function DonateSection() {
+  const { sheetdata } = useSheetQuery();
+  const aboutdata = sheetdata[11];
+
   // const [scope, animate] = useAnimate();
   // const isInview = useInView(scope);
 
@@ -26,9 +30,9 @@ export default async function DonateSection() {
   //     animation();
   //   }
   // }, [isInview]);
-  const aboutdata = (await donationmsg()) ?? [];
+  // const aboutdata = (await donationmsg()) ?? [];
 
-  console.log(aboutdata[0]);
+  // console.log(aboutdata[0]);
 
   const donationMsg =
     "“Your gift empowers women in Africa to use technology to innovate and solve problems in their communities. We enable self-help, not aid. We fund change, not charity….”";
@@ -39,7 +43,7 @@ export default async function DonateSection() {
     >
       <div className="">
         <p className="lg:text-2xl text-xl text-white text-center">
-          {aboutdata[0]}
+          {aboutdata && aboutdata[0]}
           {/* {donationMsg.split(" ").map((value, index) => (
         
             <motion.span

@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import React from "react";
 import Image from "next/image";
 import { PiCastleTurretLight } from "react-icons/pi";
@@ -6,6 +6,7 @@ import { PiCastleTurretFill } from "react-icons/pi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LearnMoreBtn } from "./ButtonAction";
 import { aboutUs } from "@/dbconnection/sheetQuery";
+import { useSheetQuery } from "@/store/sheetquery";
 
 // const cardContents = [
 //   {
@@ -36,7 +37,11 @@ import { aboutUs } from "@/dbconnection/sheetQuery";
 //   },
 // ];
 
-export default async function WhoWeAreComp() {
+export default function WhoWeAreComp() {
+  const { sheetdata } = useSheetQuery();
+  const aboutdata = sheetdata.slice(7, 11);
+  // console.log(aboutdata, "whoweare");
+
   // const [scope, animate] = useAnimate();
   // const main = useRef(null);
   // const isInView = useInView(scope, {
@@ -82,7 +87,7 @@ export default async function WhoWeAreComp() {
   //     },
   //   }),
   // };
-  const aboutdata = (await aboutUs()) ?? [];
+  // const aboutdata = (await aboutUs()) ?? [];
   const contents = aboutdata.slice(1);
   // console.log(contents, "us");
 
@@ -100,7 +105,7 @@ export default async function WhoWeAreComp() {
     {
       title: "Our Values",
       discription: null,
-      items: contents[2].split(","),
+      items: contents[2]?.join().split(","),
     },
   ];
 
@@ -137,7 +142,7 @@ export default async function WhoWeAreComp() {
                     {value.discription && <p>{value.discription}</p>}
                     {value.items !== null && (
                       <ul className="grid grid-cols-1 lg:grid-cols-2">
-                        {value.items?.map((item, index) => (
+                        {value.items?.map((item: any, index: number) => (
                           <li
                             key={index}
                             className="flex gap-2 justify-start items-center "
@@ -152,7 +157,18 @@ export default async function WhoWeAreComp() {
                 </Card>
               </div>
             ))}
-            {/* {cardContents.map((value, index) => (
+          </div>
+          <div className=" py-3 lg:py-5 justify-start w-full">
+            <LearnMoreBtn />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+{
+  /* {cardContents.map((value, index) => (
               <motion.div
                 variants={animation}
                 initial="hidden"
@@ -182,13 +198,5 @@ export default async function WhoWeAreComp() {
                   </CardContent>
                 </Card>
               </motion.div>
-            ))} */}
-          </div>
-          <div className=" py-3 lg:py-5 justify-start w-full">
-            <LearnMoreBtn />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+            ))} */
 }

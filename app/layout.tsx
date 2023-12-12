@@ -30,7 +30,7 @@ export default function RootLayout({
           <ScrollToTheTopBtn />
 
           <FixedBg />
-          <FixedSocialMediaBtn />
+          {/* <FixedSocialMediaBtn /> */}
           <NavBar />
           <main className="flex flex-grow overflow-x-clip">{children}</main>
           <Footer />

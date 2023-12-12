@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import { FaHandsHelping } from "react-icons/fa";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { LearnMoreBtn } from "./ButtonAction";
 import { howToHelp } from "@/dbconnection/sheetQuery";
+import { useSheetQuery } from "@/store/sheetquery";
 
 const ICONVALUE = 50;
 
@@ -35,8 +37,11 @@ function CardComp({ title, discription, bgImage, overlaycolor, icon }: any) {
   );
 }
 
-export default async function HowTOHelp() {
-  const howToHelpx = (await howToHelp()) ?? [];
+export default function HowTOHelp() {
+  // const howToHelpx = (await howToHelp()) ?? [];
+  const { sheetdata } = useSheetQuery();
+  const howToHelpx = sheetdata.slice(25);
+  console.log(howToHelpx, "howToHelpx");
 
   const howtohelpData = [
     {

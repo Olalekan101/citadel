@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import React from "react";
 import {
   Card,
@@ -10,12 +10,26 @@ import {
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { milestone } from "@/dbconnection/sheetQuery";
+import { useSheetQuery } from "@/store/sheetquery";
 
 const VideoCover = ({ children }: any) => {
   return <div className=" overflow-clip rounded-lg">{children}</div>;
 };
 
-export default async function Milestones() {
+export default function Milestones() {
+  const { sheetdata: data } = useSheetQuery();
+  const aboutdata = data.slice(12, 15);
+  console.log(aboutdata, "popopop");
+
+  const aboutmap = aboutdata?.map((value) => {
+    const data = value?.join().split("-");
+    return {
+      description: data[0],
+      number: data[1],
+    };
+  });
+  console.log(aboutmap, "aboutmap");
+
   // const animateArray = {
   //   initial: {
   //     opacity: 0,
@@ -29,15 +43,6 @@ export default async function Milestones() {
   //     },
   //   }),
   // };
-
-  const aboutdata = (await milestone()) ?? [];
-  const aboutmap = aboutdata.map((value) => {
-    const data = value.split("-");
-    return {
-      description: data[0],
-      number: data[1],
-    };
-  });
 
   return (
     <div className=" w-screen bg-background lg:pt-10 lg:pb-20 pt:5 pb:10 ">

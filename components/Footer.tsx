@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { DonationBtn } from "./ButtonAction";
 import Link from "next/link";
@@ -7,11 +8,15 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { ContactCompMobile } from "./NavBar";
+import { useSheetQuery } from "@/store/sheetquery";
 
-export default async function Footer() {
-  const data = await contactData();
-  const aboutdata = await aboutUs();
-  const abouttrim = aboutdata?.slice(1, 2).join("");
+export default function Footer() {
+  const { sheetdata } = useSheetQuery();
+  const data = sheetdata?.slice(15, 18);
+  const abouttrim = sheetdata?.slice(1, 2).join("");
+  // const data = await contactData();
+  // const aboutdata = await aboutUs();
+  // const abouttrim = aboutdata?.slice(1, 2);
 
   const contact_data = [
     {

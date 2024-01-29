@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -6,10 +5,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import DesktopMenu from "./DesktopMenu";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MobileMenuDrawer } from "./MobileMenuDrawer";
-import { getGoogleSheetsData } from "@/dbconnection/gsheet";
-import { contactData } from "@/dbconnection/sheetQuery";
 import Link from "next/link";
 import { useSheetQuery } from "@/store/sheetquery";
+import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 
 export function ContactComp({ title, contact, icon }: any) {
   let contactcheck = null;
@@ -44,11 +42,14 @@ export function ContactCompMobile({ title, contact, icon }: any) {
   );
 }
 
-export default function NavBar() {
-  // const data = await contactData();
-  const { sheetdata } = useSheetQuery();
-  const data = sheetdata?.slice(15, 18);
-  console.log(data, "koko");
+export default async function NavBar() {
+  const data = await ContenfulProduct();
+  const contacts = data
+    .map((value: any) => {
+      return [value.phoneNumber, value.email, value.address];
+    })
+    .flat();
+  console.log(contacts, "koko");
 
   const SIZE = 12;
 
@@ -56,18 +57,18 @@ export default function NavBar() {
     {
       title: "Call Us",
       icon: <FaPhoneAlt size={SIZE} />,
-      contact: data && data[0],
+      contact: data && contacts[0],
     },
     {
       title: "Send Email",
       icon: <MdEmail size={SIZE} />,
-      contact: data && data[1],
+      contact: data && contacts[1],
     },
     ,
     {
       title: "Address",
       icon: <FaLocationDot size={SIZE} />,
-      contact: data && data[2],
+      contact: data && contacts[2],
     },
   ];
   return (

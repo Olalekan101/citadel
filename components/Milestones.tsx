@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import {
   Card,
@@ -9,25 +8,38 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { milestone } from "@/dbconnection/sheetQuery";
-import { useSheetQuery } from "@/store/sheetquery";
+import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 
 const VideoCover = ({ children }: any) => {
   return <div className=" overflow-clip rounded-lg">{children}</div>;
 };
 
-export default function Milestones() {
-  const { sheetdata: data } = useSheetQuery();
-  const aboutdata = data.slice(12, 15);
-  console.log(aboutdata, "popopop");
+export default async function Milestones() {
+  const data = await ContenfulProduct();
+  const des = [
+    "Students Impacted",
+    "Student On Scholarships",
+    "Youth Trained On Tech Skills",
+  ];
+  const aboutmap = data
+    .map((value: any) => {
+      return [
+        {
+          description: des[0],
+          number: value.studentsImpacted,
+        },
+        {
+          description: des[1],
+          number: value.studentsOnScholarships,
+        },
+        {
+          description: des[2],
+          number: value.youthsTrainedOnTechSkills,
+        },
+      ];
+    })
+    .flat();
 
-  const aboutmap = aboutdata?.map((value) => {
-    const data = value?.join().split("-");
-    return {
-      description: data[0],
-      number: data[1],
-    };
-  });
   console.log(aboutmap, "aboutmap");
 
   // const animateArray = {
@@ -52,7 +64,7 @@ export default function Milestones() {
           <p className="text-3xl font-bold">Milestones</p>
         </div>
         <div className="flex flex-col lg:flex-row justify-center items-start gap-2 mt-7">
-          {aboutmap.map((value, index) => (
+          {aboutmap.map((value: any, index: number) => (
             <div className="lg:w-fit w-full">
               <Card
                 key={index}

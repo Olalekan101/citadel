@@ -1,38 +1,16 @@
-"use client";
 import { useEffect, useRef } from "react";
 import React from "react";
 import { DonationBtn } from "./ButtonAction";
-import { motion, useAnimate, stagger, useInView } from "framer-motion";
-import { donationmsg, milestone } from "@/dbconnection/sheetQuery";
-import { useSheetQuery } from "@/store/sheetquery";
+import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 
-export default function DonateSection() {
-  const { sheetdata } = useSheetQuery();
-  const aboutdata = sheetdata[11];
+export default async function DonateSection() {
+  const data = await ContenfulProduct();
 
-  // const [scope, animate] = useAnimate();
-  // const isInview = useInView(scope);
-
-  // useEffect(() => {
-  //   if (isInview) {
-  //     const animation = async () => {
-  //       await animate(
-  //         "#one",
-  //         { opacity: 1, y: 0 },
-  //         { delay: stagger(0.1), duration: 0.3 }
-  //       );
-  //       await animate(
-  //         "#button",
-  //         { opacity: 1, y: 0 },
-  //         { delay: 0.3, duration: 0.3 }
-  //       );
-  //     };
-  //     animation();
-  //   }
-  // }, [isInview]);
-  // const aboutdata = (await donationmsg()) ?? [];
-
-  // console.log(aboutdata[0]);
+  const donationMassage = data
+    .map((value: any) => {
+      return [value.donationMassage];
+    })
+    .flat();
 
   const donationMsg =
     "“Your gift empowers women in Africa to use technology to innovate and solve problems in their communities. We enable self-help, not aid. We fund change, not charity….”";
@@ -43,7 +21,7 @@ export default function DonateSection() {
     >
       <div className="">
         <p className="lg:text-2xl text-xl text-white text-center">
-          {aboutdata && aboutdata[0]}
+          {donationMassage && donationMassage}
           {/* {donationMsg.split(" ").map((value, index) => (
         
             <motion.span

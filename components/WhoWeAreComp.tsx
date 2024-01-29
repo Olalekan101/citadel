@@ -1,94 +1,24 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { PiCastleTurretLight } from "react-icons/pi";
 import { PiCastleTurretFill } from "react-icons/pi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LearnMoreBtn } from "./ButtonAction";
-import { aboutUs } from "@/dbconnection/sheetQuery";
-import { useSheetQuery } from "@/store/sheetquery";
+import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 
-// const cardContents = [
-//   {
-//     title: "Our Mission",
-//     discription:
-//       "To empower African women and girls to become transformative leaders through STEM Education, Leadership, and Entrepreneurship training while making a significant impact on the world.",
-//     items: null,
-//   },
-//   {
-//     title: "Our Vision",
-//     discription:
-//       "To create a world where African women are formidable global leaders, transforming lives through technology, science, and innovation.",
-//     items: null,
-//   },
-//   {
-//     title: "Our Values",
-//     discription: null,
-//     items: [
-//       "Empowerment",
-//       "Creativity",
-//       "Growth-mindset",
-//       "Passion",
-//       "Transformative Leadership",
-//       "Accountability",
-//       "Localization",
-//       "Culture-Awareness",
-//     ],
-//   },
-// ];
+export default async function WhoWeAreComp() {
+  const data = await ContenfulProduct();
 
-export default function WhoWeAreComp() {
-  const { sheetdata } = useSheetQuery();
-  const aboutdata = sheetdata.slice(7, 11);
-  // console.log(aboutdata, "whoweare");
-
-  // const [scope, animate] = useAnimate();
-  // const main = useRef(null);
-  // const isInView = useInView(scope, {
-  //   root: main,
-  //   once: true,
-  // });
-  // console.log(isInView, "lolo");
-
-  // useEffect(() => {
-  //   if (isInView) {
-  //     const animateFunction = async () => {
-  //       // await animate("#one", { opacity: 1, y: 0 });
-  //       await animate(
-  //         "#two",
-  //         { opacity: 1, y: 0 },
-  //         { delay: stagger(0.2), duration: 0.4 }
-  //       );
-  //       //   await animate(
-  //       //     "#three",
-  //       //     { opacity: 1, y: 0 },
-  //       //     { delay: 0.2, duration: 0.3 }
-  //       //   );
-  //       //   await animate(
-  //       //     "#four",
-  //       //     { opacity: 1, y: 0 },
-  //       //     { delay: 0.2, duration: 0.3 }
-  //       //   );
-  //     };
-  //     animateFunction();
-  //   }
-  // }, [isInView]);
-  // const animation = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 10,
-  //   },
-  //   animate: (index: number) => ({
-  //     opacity: 1,
-  //     y: 0,
-
-  //     transition: {
-  //       delay: 0.2 * index,
-  //     },
-  //   }),
-  // };
-  // const aboutdata = (await aboutUs()) ?? [];
-  const contents = aboutdata.slice(1);
+  const contents = data
+    .map((value: any) => {
+      return [
+        value.ourMission,
+        value.ourValue,
+        value.ourVision,
+        value.whoWeAre,
+      ];
+    })
+    .flat();
   // console.log(contents, "us");
 
   const cardContents = [
@@ -99,13 +29,13 @@ export default function WhoWeAreComp() {
     },
     {
       title: "Our Vision",
-      discription: contents[1],
+      discription: contents[2],
       items: null,
     },
     {
       title: "Our Values",
       discription: null,
-      items: contents[2]?.join().split(","),
+      items: contents[1].split(","),
     },
   ];
 
@@ -129,7 +59,7 @@ export default function WhoWeAreComp() {
             <p className="lg:text-4xl text-3xl font-bold lg:py-4 py-2">
               Who We Are
             </p>
-            <p className="font-medium text-slate-900">{aboutdata[0]}</p>
+            <p className="font-medium text-slate-900">{contents[3]}</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-5 ">
             {cardContents.map((value, index) => (

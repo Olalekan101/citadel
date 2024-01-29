@@ -1,10 +1,8 @@
-"use client";
 import React from "react";
 import { FaHandsHelping } from "react-icons/fa";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { LearnMoreBtn } from "./ButtonAction";
-import { howToHelp } from "@/dbconnection/sheetQuery";
 import { useSheetQuery } from "@/store/sheetquery";
 
 const ICONVALUE = 50;
@@ -39,33 +37,33 @@ function CardComp({ title, discription, bgImage, overlaycolor, icon }: any) {
 
 export default function HowTOHelp() {
   // const howToHelpx = (await howToHelp()) ?? [];
-  const { sheetdata } = useSheetQuery();
-  const howToHelpx = sheetdata.slice(25);
-  console.log(howToHelpx, "howToHelpx");
+  // const { sheetdata } = useSheetQuery();
+  // const howToHelpx = sheetdata.slice(25);
+  // console.log(howToHelpx, "howToHelpx");
 
-  const howtohelpData = [
-    {
-      title: "Volunteer",
-      discription: howToHelpx[0],
-      bgImage: "/images/background_image.jpg",
-      overlaycolor: "bg-yellow-500/40",
-      icon: <FaHandsHelping size={ICONVALUE} />,
-    },
-    {
-      title: "Partners",
-      discription: howToHelpx[1],
-      bgImage: "/images/background_image.jpg",
-      overlaycolor: "bg-green-500/40",
-      icon: <FaHandsHelping size={ICONVALUE} />,
-    },
-    {
-      title: "Mentorship",
-      discription: howToHelpx[2],
-      bgImage: "/images/background_image.jpg",
-      overlaycolor: "bg-pink-500/40",
-      icon: <FaHandsHelping size={ICONVALUE} />,
-    },
-  ];
+  // const howtohelpData = [
+  //   {
+  //     title: "Volunteer",
+  //     discription: howToHelpx[0],
+  //     bgImage: "/images/background_image.jpg",
+  //     overlaycolor: "bg-yellow-500/40",
+  //     icon: <FaHandsHelping size={ICONVALUE} />,
+  //   },
+  //   {
+  //     title: "Partners",
+  //     discription: howToHelpx[1],
+  //     bgImage: "/images/background_image.jpg",
+  //     overlaycolor: "bg-green-500/40",
+  //     icon: <FaHandsHelping size={ICONVALUE} />,
+  //   },
+  //   {
+  //     title: "Mentorship",
+  //     discription: howToHelpx[2],
+  //     bgImage: "/images/background_image.jpg",
+  //     overlaycolor: "bg-pink-500/40",
+  //     icon: <FaHandsHelping size={ICONVALUE} />,
+  //   },
+  // ];
 
   return (
     <section id="howtohelp" className="w-screen bg-background ">
@@ -73,11 +71,11 @@ export default function HowTOHelp() {
         <div className="w-full flex justify-center py-4">
           <p className="text-3xl font-extrabold">How To Help</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-3">
           {howtohelpData.map((value, index) => (
             <CardComp key={index} {...value} />
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

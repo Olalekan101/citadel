@@ -13,7 +13,7 @@ export default function Home() {
       <WhoWeAreComp />
       <Milestones />
       <DonateSection />
-      <HowTOHelp />
+      {/* <HowTOHelp /> */}
       <SliderSection />
       <GallarySection />
     </section>

@@ -1,39 +1,38 @@
-"use client";
 import React from "react";
 import { DonationBtn } from "./ButtonAction";
 import Link from "next/link";
 import { whatwedolinks } from "@/data/Urllinks";
-import { aboutUs, contactData } from "@/dbconnection/sheetQuery";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { ContactCompMobile } from "./NavBar";
 import { useSheetQuery } from "@/store/sheetquery";
+import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 
-export default function Footer() {
-  const { sheetdata } = useSheetQuery();
-  const data = sheetdata?.slice(15, 18);
-  const abouttrim = sheetdata?.slice(1, 2).join("");
-  // const data = await contactData();
-  // const aboutdata = await aboutUs();
-  // const abouttrim = aboutdata?.slice(1, 2);
+export default async function Footer() {
+  const data = await ContenfulProduct();
+  const contacts = data
+    .map((value: any) => {
+      return [value.phoneNumber, value.email, value.address, value.whoWeAre];
+    })
+    .flat();
 
   const contact_data = [
     {
       title: "Call Us",
       icon: <FaPhoneAlt size={18} />,
-      contact: data && data[0],
+      contact: data && contacts[0],
     },
     {
       title: "Send Email",
       icon: <MdEmail size={18} />,
-      contact: data && data[1],
+      contact: data && contacts[1],
     },
     ,
     {
       title: "Address",
       icon: <FaLocationDot size={18} />,
-      contact: data && data[2],
+      contact: data && contacts[2],
     },
   ];
   return (
@@ -45,7 +44,7 @@ export default function Footer() {
               <h1 className="text-2xl font-bold">TTcitadel</h1>
             </div>
             <div className="">
-              <p>{abouttrim}</p>
+              <p>{data && contacts[3]}</p>
             </div>
             <DonationBtn />
           </div>

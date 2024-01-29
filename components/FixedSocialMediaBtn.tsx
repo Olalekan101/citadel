@@ -1,12 +1,23 @@
-import { socialMediaLinks } from "@/dbconnection/sheetQuery";
+import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 
 export default async function FixedSocialMediaBtn() {
-  const data = (await socialMediaLinks()) ?? [];
-  console.log(data, "socail");
+  const datax = await ContenfulProduct();
+
+  const data = datax
+    .map((value: any) => {
+      return [
+        value.facebook,
+        value.instagram,
+        value.whatsapp,
+        value.linkedin,
+        value.youtube,
+      ];
+    })
+    .flat();
 
   const ICONSIZE = 25;
   const socialLinks = [

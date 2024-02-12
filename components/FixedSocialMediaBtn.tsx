@@ -1,11 +1,24 @@
+// "use client";
 import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
 import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
+import { useQuery } from "react-query";
 
 export default async function FixedSocialMediaBtn() {
   const datax = await ContenfulProduct();
+  // const {
+  //   data: datax,
+  //   isLoading,
+  //   isError,
+  // } = useQuery({
+  //   queryKey: ["todos"],
+  //   queryFn: async () => {
+  //     const data = await ContenfulProduct();
+  //     return data;
+  //   },
+  // });
 
   const data = datax
     .map((value: any) => {

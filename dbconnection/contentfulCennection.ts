@@ -25,13 +25,13 @@ export async function ContenfulProduct() {
     return entryId;
   });
 
-  console.log(JSON.stringify(res, null, 2), "opopopopoppopoop");
-
   const modifiedProducts = data.map((product: any, index: number) => ({
     ...product,
     productId: Id[index],
     heroImage: "https:" + product.heroImage.fields.file.url,
   }));
+
+  console.log(JSON.stringify(modifiedProducts, null, 2), "opopopopoppopoop");
 
   return modifiedProducts;
 }

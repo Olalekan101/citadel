@@ -1,3 +1,4 @@
+// "use client";
 import React from "react";
 import {
   Card,
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
+import { useQuery } from "react-query";
 
 const VideoCover = ({ children }: any) => {
   return <div className=" overflow-clip rounded-lg">{children}</div>;
@@ -16,13 +18,20 @@ const VideoCover = ({ children }: any) => {
 
 export default async function Milestones() {
   const data = await ContenfulProduct();
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: ["todos"],
+  //   queryFn: async () => {
+  //     const data = await ContenfulProduct();
+  //     return data;
+  //   },
+  // });
   const des = [
     "Students Impacted",
     "Student On Scholarships",
     "Youth Trained On Tech Skills",
   ];
   const aboutmap = data
-    .map((value: any) => {
+    ?.map((value: any) => {
       return [
         {
           description: des[0],
@@ -64,7 +73,7 @@ export default async function Milestones() {
           <p className="text-3xl font-bold">Milestones</p>
         </div>
         <div className="flex flex-col lg:flex-row justify-center items-start gap-2 mt-7">
-          {aboutmap.map((value: any, index: number) => (
+          {aboutmap?.map((value: any, index: number) => (
             <div className="lg:w-fit w-full">
               <Card
                 key={index}

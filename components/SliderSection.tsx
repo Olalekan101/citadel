@@ -9,6 +9,14 @@ import "swiper/css/navigation";
 import { FreeMode, Pagination, A11y, Navigation } from "swiper/modules";
 
 import SlideNextButton from "./SwiperBtn";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const SliderData = [
   {
@@ -45,32 +53,20 @@ const SliderData = [
 
 export default function SliderSection() {
   return (
-    <section className="w-screen bg-background lg:py-10 flex">
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={0}
-        breakpoints={{
-          700: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
-          1000: {
-            slidesPerView: 3,
-            spaceBetween: 8,
-          },
-        }}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation
-        modules={[FreeMode, Pagination, A11y, Navigation]}
-        className="max-w-[90%] lg:max-w-[80%] "
-      >
+    <Carousel
+      opts={{
+        align: "center",
+      }}
+      className="w-screen max-w-[250px] md:max-w-6xl mb-10"
+    >
+      <CarouselContent>
         {SliderData.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex flex-col gap-6 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[400px] w-[80%] lg:h-[400px] lg:w-[350px] mb-10 ">
-              {/* <div className="absolute inset-0 bg-cover bg-center">
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square w-full items-center justify-center p-6 relative overflow-clip">
+                  {/* <div className="flex flex-col gap-6 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[400px] w-[80%] lg:h-[400px] lg:w-[350px] mb-10 ">
+                    {/* <div className="absolute inset-0 bg-cover bg-center">
                 <Image
                   src={item.image}
                   fill={true}
@@ -78,20 +74,33 @@ export default function SliderSection() {
                   className="object-cover w-full h-full"
                 />
               </div> */}
-              <div className="absolute inset-0 bg-cover bg-center z-10 p-5">
-                <p className="font-bold text-xl mb-3 lg:mb-5">{item.title}</p>
-                <p className="lg:text-base text-sm">{item.description}</p>
-              </div>
-              <div
-                className="absolute inset-0 bg-cover bg-center brightness-50 rounded-lg overflow-clip"
-                style={{ backgroundImage: `url(${item.image})` }}
-              />
+                  {/* <div className="absolute inset-0 bg-cover bg-center z-10 p-5">
+                      <p className="font-bold text-xl mb-3 lg:mb-5">
+                        {item.title}
+                      </p>
+                      <p className="lg:text-base text-sm">{item.description}</p>
+                    </div>
+                    <div
+                      className="absolute inset-0 bg-cover bg-center brightness-50 rounded-lg overflow-clip"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    />
+                  </div> */}
+                  <div className="w-full">
+                    {" "}
+                    <p className="font-bold text-xl mb-3 lg:mb-5">
+                      {item.title}
+                    </p>
+                    <p className="lg:text-base text-sm">{item.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-          </SwiperSlide>
+          </CarouselItem>
         ))}
-        <SlideNextButton />
-      </Swiper>
-    </section>
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 }
 //  <div className="absolute inset-0 z-10 w-full h-full">

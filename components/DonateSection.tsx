@@ -1,13 +1,22 @@
+// "use client";
 import { useEffect, useRef } from "react";
 import React from "react";
 import { DonationBtn } from "./ButtonAction";
 import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
+import { useQuery } from "react-query";
 
 export default async function DonateSection() {
   const data = await ContenfulProduct();
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: ["todos"],
+  //   queryFn: async () => {
+  //     const data = await ContenfulProduct();
+  //     return data;
+  //   },
+  // });
 
   const donationMassage = data
-    .map((value: any) => {
+    ?.map((value: any) => {
       return [value.donationMassage];
     })
     .flat();

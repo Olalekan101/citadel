@@ -1,3 +1,4 @@
+// "use client";
 import React from "react";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -8,6 +9,7 @@ import { MobileMenuDrawer } from "./MobileMenuDrawer";
 import Link from "next/link";
 import { useSheetQuery } from "@/store/sheetquery";
 import { ContenfulProduct } from "@/dbconnection/contentfulCennection";
+import { useQuery } from "react-query";
 
 export function ContactComp({ title, contact, icon }: any) {
   let contactcheck = null;
@@ -44,8 +46,15 @@ export function ContactCompMobile({ title, contact, icon }: any) {
 
 export default async function NavBar() {
   const data = await ContenfulProduct();
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: ["todos"],
+  //   queryFn: async () => {
+  //     const data = await ContenfulProduct();
+  //     return data;
+  //   },
+  // });
   const contacts = data
-    .map((value: any) => {
+    ?.map((value: any) => {
       return [value.phoneNumber, value.email, value.address];
     })
     .flat();
